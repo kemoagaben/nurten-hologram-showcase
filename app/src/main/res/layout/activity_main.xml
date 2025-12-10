@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menuRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#050505"
+    android:orientation="vertical"
+    android:padding="28dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NURTEN\nHOLOGRAM SHOWCASE"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:letterSpacing="0.12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Koleksiyon seç:"
+        android:textColor="#80FFFFFF"
+        android:layout_marginTop="10dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#22FFFFFF"
+        android:layout_marginVertical="16dp" />
+
+    <Button
+        android:id="@+id/btnSun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GÜNEŞİN SICAKLIĞI"
+        android:backgroundTint="#FFCFA351"
+        android:textColor="#000000"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnNature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DOĞAYA DÖNÜŞ"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#222222"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnLove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AŞK VE ŞANS"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#222222"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnTimeless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ZAMANSIZ AŞK"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#222222"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnWater"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUYUN SESİ"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#222222"/>
+
+    <Button
+        android:id="@+id/btnArMode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AR GERÇEKLİK MODU"
+        android:textColor="#FFCFA351"
+        android:backgroundTint="#000000"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/arRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <fragment
+        android:id="@+id/arFragment"
+        android:name="com.gorisse.thomas.sceneform.ArFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/arHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yüzeyi tara, sonra ekrana dokunarak kolyeyi yerleştir"
+        android:textColor="#CCFFFFFF"
+        android:textSize="12sp"
+        android:layout_margin="12dp"
+        android:layout_gravity="top|center_horizontal" />
+
+    <TextView
+        android:id="@+id/arWatermark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NURTEN – Güneşin Sıcaklığı AR"
+        android:textColor="#80FFFFFF"
+        android:textSize="14sp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="bottom|center_horizontal" />
+
+</FrameLayout>
