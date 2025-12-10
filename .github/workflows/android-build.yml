@@ -1,0 +1,30 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:      # İstediğin zaman elle çalıştırmak için
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kodu çek
+        uses: actions/checkout@v4
+
+      - name: Java 17 kur
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Gradle ile debug APK derle
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: 8.9
+          arguments: assembleDebug
+
+      - name: APK çıktısını yükle
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
