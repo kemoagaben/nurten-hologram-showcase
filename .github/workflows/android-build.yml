@@ -1,7 +1,7 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch:      # İstediğin zaman elle çalıştırmak için
+  workflow_dispatch:
 
 jobs:
   build:
