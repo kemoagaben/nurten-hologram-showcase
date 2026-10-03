@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/arFragment"
-        android:name="com.gorisse.thomas.sceneform.ArFragment"
+        android:name="com.google.ar.sceneform.ux.ArFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

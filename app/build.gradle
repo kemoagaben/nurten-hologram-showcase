@@ -36,6 +36,7 @@ dependencies {
 
     // ARCore
     implementation("com.google.ar:core:1.45.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
     // Sceneform (AR 3D engine)
     implementation("com.gorisse.thomas.sceneform:sceneform:1.23.0")

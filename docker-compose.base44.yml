@@ -1,0 +1,22 @@
+services:
+  android-build:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.android
+    working_dir: /project
+    volumes:
+      - .:/project
+      - gradle-cache:/home/gradle/.gradle
+    environment:
+      - GRADLE_USER_HOME=/home/gradle/.gradle
+    command: ["sh","-ec","gradle --no-daemon :app:assembleDebug && mkdir -p /project/dist && cp app/build/outputs/apk/debug/*.apk dist/ && cd dist && echo 'APK ready:' && ls -l && exec python3 -m http.server 3000"]
+    ports: ["3000:3000"]
+    restart: on-failure
+    healthcheck:
+      test: ["CMD","curl","-fsS","http://localhost:3000/"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 600s
+volumes:
+  gradle-cache:

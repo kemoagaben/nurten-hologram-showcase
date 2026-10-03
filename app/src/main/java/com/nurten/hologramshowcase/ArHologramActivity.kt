@@ -1,20 +1,19 @@
 package com.nurten.hologramshowcase
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.gorisse.thomas.sceneform.ArFragment
-import com.gorisse.thomas.sceneform.math.Position
-import com.gorisse.thomas.sceneform.node.ModelNode
-import com.gorisse.thomas.sceneform.scene.await
-import com.gorisse.thomas.sceneform.scene.setOnTapArPlaneListener
-import com.google.ar.core.HitResult
-import kotlinx.coroutines.*
+import com.google.ar.sceneform.AnchorNode
+import com.google.ar.sceneform.math.Vector3
+import com.google.ar.sceneform.rendering.ModelRenderable
+import com.google.ar.sceneform.ux.ArFragment
+import com.google.ar.sceneform.ux.TransformableNode
 
 class ArHologramActivity : AppCompatActivity() {
     private lateinit var arFragment: ArFragment
-    private val uiScope = CoroutineScope(Dispatchers.Main + Job())
+    private var placed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,31 +26,23 @@ class ArHologramActivity : AppCompatActivity() {
 
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
-        arFragment.setOnTapArPlaneListener { hitResult: HitResult, _, _ ->
-            placeNecklace(hitResult)
-        }
-    }
-
-    private fun placeNecklace(hitResult: HitResult) {
-        arFragment.setOnTapArPlaneListener(null)
-        uiScope.launch {
-            val modelInstance = arFragment.modelLoader.createModelInstance(
-                assetFileLocation = "gunesin_sicakligi.glb"
-            ).await()
-
-            val node = ModelNode(
-                modelInstance = modelInstance,
-                anchor = hitResult.createAnchor()
-            ).apply {
-                position = Position(0f, 0.05f, 0f)
-                scale = Position(0.2f, 0.2f, 0.2f)
-                isSmoothTransformEnabled = true
-                isShadowReceiver = true
-                isShadowCaster = true
-            }
-
-            arFragment.addChild(node)
-            node.isSelectable = true
+        arFragment.setOnTapArPlaneListener { hitResult, _, _ ->
+            if (placed) return@setOnTapArPlaneListener
+            placed = true
+            ModelRenderable.builder()
+                .setSource(this, Uri.parse("gunesin_sicakligi.glb"))
+                .setIsFilamentGltf(true)
+                .build()
+                .thenAccept { renderable ->
+                    val anchorNode = AnchorNode(hitResult.createAnchor())
+                    anchorNode.setParent(arFragment.arSceneView.scene)
+                    TransformableNode(arFragment.transformationSystem).apply {
+                        this.renderable = renderable
+                        localScale = Vector3(0.2f, 0.2f, 0.2f)
+                        setParent(anchorNode)
+                        select()
+                    }
+                }
         }
     }
 }
